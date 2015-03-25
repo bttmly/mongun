@@ -4,7 +4,6 @@ var rewire = require("rewire");
 
 var mongun;
 
-
 function mongoClientStub () {
   var url, collection, data, called;
 
@@ -49,7 +48,6 @@ describe("mongun", function () {
     mongun(config, function (err) {
       expect(err.message).to.equal("Must provide a collection name");
       done();
-
     });
   });
 
