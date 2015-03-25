@@ -1,4 +1,4 @@
-# mongun
+# mongun [![Build Status](https://travis-ci.org/nickb1080/mongun.svg?branch=master)](https://travis-ci.org/nickb1080/mongun)
 
 _Shoot stuff into a Mongo database_
 
