@@ -1,0 +1,17 @@
+{
+  "name": "mongun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^4.7.16",
+    "commander": "^2.7.1",
+    "lodash.assign": "^3.0.0",
+    "mongodb": "^1.4.34"
+  }
+}

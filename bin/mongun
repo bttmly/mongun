@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+var fs = require("fs");
+var path = require("path");
+
+var program = require("commander");
+var assign = require("lodash.assign");
+
+var mongun = require("../lib");
+
+program.version("0.1.0")
+  .option("-c --collection <collection>", "Target collection (*required)")
+  .option("-f --file <file>", "JSON file to import (*required)")
+  .option("-d --database <database>", "Target database (defaults to `test`)")
+  .option("-h --host <host>", "MongoDB host (defaults to `mongodb://localhost`")
+  .option("-p --port <port>", "MongoDB port (defaults to 27017)")
+  .parse(process.argv);
+
+var filePath = path.join(process.cwd(), program.file);
+
+console.log("Reading data from file:", filePath);
+
+var s = onlyDefined({
+  database: program.database,
+  collection: program.collection,
+  file: program.file,
+  host: program.host,
+  port: program.port,
+  filePath: filePath,
+});
+
+s.data = JSON.parse(fs.readFileSync(filePath).toString());
+
+mongun(s, function (err, result) {
+  if (err) throw err;
+  console.log("Success:", result);
+});
+
+function onlyDefined (obj) {
+  var result = {};
+  Object.keys(obj).forEach(function (k) {
+    if (obj[k] !== undefined) result[k] = obj[k];
+  });
+  return result;
+}
